@@ -36,7 +36,7 @@ def export(input_file, output_file):
 # Process Files
 # =============
 
-output_dir = "processed"
+output_dir = "processed/dg_race"
 
 # Make sure processed directory exists
 if not os.path.exists(output_dir):
@@ -44,10 +44,10 @@ if not os.path.exists(output_dir):
 
 # Generate files
 export(input_file="DG_RACE/race_dev_updated.json",
-       output_file=f"{output_dir}/dg_race_dev.jsonl")
+       output_file=f"{output_dir}/dev.jsonl")
 
 export(input_file="DG_RACE/race_test_updated.json",
-       output_file=f"{output_dir}/dg_race_test.jsonl")
+       output_file=f"{output_dir}/test.jsonl")
 
 export(input_file="DG_RACE/race_train_updated.json",
-       output_file=f"{output_dir}/dg_race_train.jsonl")
+       output_file=f"{output_dir}/train.jsonl")

@@ -40,18 +40,17 @@ def export(input_file, output_file):
 # Process Files
 # =============
 
-output_dir = "processed"
+output_dir = "processed/qasc"
 
 # Make sure processed directory exists
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
-# Generate files
+# Generate files.
+# Please note that QASC doesn't include
+# the right answers in the validation set.
 export(input_file="QASC/dev.jsonl",
-       output_file=f"{output_dir}/qasc_dev.jsonl")
-
-export(input_file="QASC/test.jsonl",
-       output_file=f"{output_dir}/qasc_test.jsonl")
+       output_file=f"{output_dir}/test.jsonl")
 
 export(input_file="QASC/train.jsonl",
-       output_file=f"{output_dir}/qasc_train.jsonl")
+       output_file=f"{output_dir}/train.jsonl")
