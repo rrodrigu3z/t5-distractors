@@ -25,6 +25,7 @@ def set_seed(seed):
 set_seed(42)
 
 BASE_MODEL = "t5-small"
+MAX_SEQ_LENGTH = 512
 logger = logging.getLogger(__name__)
 
 args_dict = dict(
@@ -32,7 +33,7 @@ args_dict = dict(
     output_dir="", # path to save the checkpoints
     model_name_or_path=BASE_MODEL,
     tokenizer_name_or_path=BASE_MODEL,
-    max_seq_length=512,
+    max_seq_length=MAX_SEQ_LENGTH,
     learning_rate=3e-4,
     weight_decay=0.0,
     adam_epsilon=1e-8,
@@ -52,7 +53,7 @@ args_dict = dict(
 tokenizer = T5Tokenizer.from_pretrained(BASE_MODEL)
 
 data_path = os.path.join("data", "processed", "qasc")
-dataset = DistractorDataset(tokenizer, data_path, "test", 256)
+dataset = DistractorDataset(tokenizer, data_path, "test", MAX_SEQ_LENGTH)
 print("Val dataset: ",len(dataset))
 
 data = dataset[61]
@@ -65,7 +66,7 @@ if not os.path.exists("t5_distractor"):
 args_dict.update({"data_dir": data_path,
                   "output_dir": "t5_distractor",
                   "num_train_epochs": 2,
-                  "max_seq_length": 256})
+                  "max_seq_length": MAX_SEQ_LENGTH})
 
 args = argparse.Namespace(**args_dict)
 print(args_dict)
