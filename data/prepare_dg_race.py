@@ -8,22 +8,19 @@ def export(input_file, output_file):
     """Reads input_file and transforms to a jsonlines containing objects
     with the following structure:
         {
+            "context": "...",
             "question": "...",
             "answer": "...",
             "distractor": "..."
         }
     """
     instances = []
-    file_ids = []
 
     print(f"Reading {input_file}")
     with jsonlines.open(input_file) as reader:
         for obj in reader:
-            if obj["id"]["file_id"] in file_ids:
-                continue
-
-            file_ids.append(obj["id"]["file_id"])
-            instances.append({"question": " ".join(obj["question"]),
+            instances.append({"context": " ".join(obj["article"]),
+                              "question": " ".join(obj["question"]),
                               "answer": " ".join(obj["answer_text"]),
                               "distractor": " ".join(obj["distractor"])})
 

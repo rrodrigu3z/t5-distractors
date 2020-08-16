@@ -33,10 +33,11 @@ class DistractorDataset(Dataset):
     def _build(self, path):
         with jsonlines.open(path) as reader:
             for obj in reader:
+                c = obj["context"]
                 q = obj["question"]
                 a = obj["answer"]
                 tokenized_input = self._tokenize(
-                    f"generate distractor: {q}  answer: {a} </s>")
+                    f"generate distractor: {q}  answer: {a}  context: {c} </s>")
                 tokenized_target = self._tokenize(
                     f"{obj['distractor']} </s>")
 
