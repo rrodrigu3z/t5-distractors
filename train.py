@@ -24,7 +24,7 @@ def set_seed(seed):
 
 set_seed(42)
 
-BASE_MODEL = "t5-small"
+BASE_MODEL = "t5-base"
 MAX_SEQ_LENGTH = 512
 logger = logging.getLogger(__name__)
 
@@ -52,11 +52,11 @@ args_dict = dict(
 
 tokenizer = T5Tokenizer.from_pretrained(BASE_MODEL)
 
-data_path = os.path.join("data", "processed", "qasc")
+data_path = os.path.join("data", "processed", "dg_race")
 dataset = DistractorDataset(tokenizer, data_path, "test", MAX_SEQ_LENGTH)
 print("Val dataset: ",len(dataset))
 
-data = dataset[61]
+data = dataset[42]
 print(tokenizer.decode(data["source_ids"]))
 print(tokenizer.decode(data["target_ids"]))
 
