@@ -24,7 +24,7 @@ def set_seed(seed):
 
 set_seed(42)
 
-BASE_MODEL = "t5-small"
+BASE_MODEL = "t5-base"
 MAX_SEQ_LENGTH = 512
 logger = logging.getLogger(__name__)
 
